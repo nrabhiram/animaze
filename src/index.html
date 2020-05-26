@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!--
+        <div class="modal" id="modal">
+            <div class="delete">
+                <p data-close-button>&times;</p>
+            </div>
+            <div class="trailer-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/qig4KOK2R2g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="overlay" id="overlay"></div>
+        -->
+        <header class="header">
+            <img src="img/logo.png" class="logo">
+            <form class="search">
+                <input type="text" class="search__field" placeholder="Discover new anime...">
+                <button class="btn search__btn">
+                    <svg class="search__icon">
+                        <use href="img/icons.svg#icon-magnifying-glass"></use>
+                    </svg>
+                    <span>Search</span>
+                </button>
+            </form>
+            <div class="likes">
+                <div class="likes__field">
+                    <svg class="likes__icon">
+                        <use href="img/icons.svg#icon-heart"></use>
+                    </svg>
+                </div>
+                <div class="likes__panel">
+                    <ul class="likes__list">
+                        <a class="results__link results__link--active" href="">
+                            <figure class="results__fig">
+                                <img src="https://cdn.myanimelist.net/images/anime/4/64273.jpg?s=41fd3ba4136fe34bb0b7f0a3c2476fa9" alt="Test">
+                            </figure>
+                            <div class="results__data">
+                                <h4 class="results__name">Fate/Zero Remix</h4>
+                                <p class="results__type">TV</p>
+                            </div>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="content">
+            <div class="results transform">
+                <ul class="results__list">
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/4/64273.jpg?s=41fd3ba4136fe34bb0b7f0a3c2476fa9" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">Fate/Zero Remix</h4>
+                            <p class="results__type">TV</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/8/41125.jpg?s=78a6e73a2cd5856b28d8c182cd5a1a22" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">Ga-Rei: Zero</h4>
+                            <p class="results__type">TV</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/6/37081.jpg?s=b4d310b5c66ed4eff2de284ab1104e71" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">AIKa Zero</h4>
+                            <p class="results__type">OVA</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/7/51943.jpg?s=9b4fd6155e0fef8b6bd4d357ea510861" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">No Game No Life: Zero</h4>
+                            <p class="results__type">TV</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/6/88499.jpg?s=90d9b263536f29ee6ea19b6b88d480d8" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">Aldnoah.Zero</h4>
+                            <p class="results__type">OVA</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/4/64273.jpg?s=41fd3ba4136fe34bb0b7f0a3c2476fa9" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">Fate/stay night</h4>
+                            <p class="results__type">OVA</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/8/41125.jpg?s=78a6e73a2cd5856b28d8c182cd5a1a22" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">Buzzer Beater</h4>
+                            <p class="results__type">OVA</p>
+                        </div>
+                    </a>
+
+                    <a class="results__link" href="">
+                        <figure class="results__fig">
+                            <img src="https://cdn.myanimelist.net/images/anime/8/41125.jpg?s=78a6e73a2cd5856b28d8c182cd5a1a22" alt="Test">
+                        </figure>
+                        <div class="results__data">
+                            <h4 class="results__name">Buzzer Beater</h4>
+                            <p class="results__type">OVA</p>
+                        </div>
+                    </a>
+
+                </ul>
+                <div class="results__pages">
+                    <button class="btn-inline results__btn--prev">
+                        <svg>
+                            <use></use>
+                        </svg>
+                        <span>Page 1</span>
+                    </button>
+                    <button class="btn-inline results__btn--next">
+                        <span>Page 3</span>
+                        <svg>
+                            <use></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+           
+            <div class="anime-container">
+                <div class="anime-box">
+                    <div class="anime">
+                        <div class="anime-details">
+                            <figure class="anime-fig">
+                                <img src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt="" class="anime__img">
+                            </figure>
+                            <div class="anime-data">
+                                <div class="anime-title">Cowboy Bebop</div>
+                                <div class="anime-episodes">Episodes: 26</div>
+                                <div class="anime-episode-duration">24 min per ep</div>
+                                <div class="anime-rating">Rating: R - 17+ (violence & profanity)</div>
+                                <div class="anime-score">Score: 8.79</div>
+                                <div class="anime-rank">Rank: 28</div>
+                                <div class="anime-duration">From Apr 3, 1998 to Apr 24, 1999</div>
+                            </div>
+                        </div>
+                        <div class="anime-plot">
+                            <div class="plot-heading">Plot</div>
+                            <div class="anime__love">
+                                    <svg class="header__likes">
+                                        <use href="img/icons.svg#icon-heart-outlined"></use>
+                                    </svg>
+                            </div>
+                        </div>
+                        <div class="plot-body">
+                            In the year 2071, humanity has colonized several of the planets and moons of the solar system leaving the now uninhabitable surface of planet Earth behind. The Inter Solar System Police attempts to keep peace in the galaxy, aided in part by outlaw bounty hunters, referred to as \"Cowboys.\" The ragtag team aboard the spaceship Bebop are two such individuals. Mellow and carefree Spike Spiegel is balanced by his boisterous, pragmatic partner Jet Black as the pair makes a living chasing bounties and collecting rewards. Thrown off course by the addition of new members that they meet in their travels—Ein, a genetically engineered, highly intelligent Welsh Corgi; femme fatale Faye Valentine, an enigmatic trickster with memory loss; and the strange computer whiz kid Edward Wong—the crew embarks on thrilling adventures that unravel each member's dark and mysterious past little by little. Well-balanced with high density action and light-hearted comedy, Cowboy Bebop is a space Western classic and an homage to the smooth and improvised music it is named after.
+                        </div>
+                       <div class="anime-trailer">
+                            <button class="btn-small anime__btn">
+                                <svg>
+                                    <use href="img/icons.svg#icon-triangle-right"></use>
+                                </svg>
+                                <span>Watch the trailer!</span>
+                            </button>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
