@@ -32,7 +32,7 @@ const formatTitle = (title, limit = 18) => {
 
 const renderShow = (show) => {
     const markup = `
-        <a class="results__link" href="">
+        <a class="results__link" href="#${show.mal_id}">
             <figure class="results__fig">
                 <img src="${show.image_url}" alt="${show.title}">
             </figure>
@@ -47,7 +47,7 @@ const renderShow = (show) => {
 }
 
 const createButton = (type, page) => `
-        <button class="btn-inline results__btn--${type}">
+        <button class="btn-inline results__btn--${type}" data-goto="${type === 'prev' ? page - 1 : page + 1}">
             <svg>
                 <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
             </svg>
@@ -74,10 +74,11 @@ const renderButtons = (totalNumResults, page, resultsPerPage) => {
 }
 
 
-export const renderResults = (shows, page = 2, resultsPerPage = 8) => {
+export const renderResults = (shows, page = 1, resultsPerPage = 8) => {
     const start = (page - 1) * resultsPerPage;
     const end = page * resultsPerPage;
     shows.slice(start, end).forEach(show => renderShow(show));
 
+    // Render the buttons for pagination
     renderButtons(shows.length, page, resultsPerPage);
 }
