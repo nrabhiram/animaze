@@ -455,6 +455,8 @@ body {
     font-weight: 600;
     font-size: 3rem;
     color: #66a6ff;
+    line-height: 1;
+    margin-bottom: 1.6rem;
 }
 
 .anime-episodes,
@@ -472,6 +474,7 @@ body {
 
 .highlight {
     color: #66a6ff;
+    margin-right: 2px;
 }
 
 .anime-fig {
@@ -661,6 +664,20 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.details-container {
+    display: flex;
+}
+
+.opening,
+.ending {
+    display: flex;
+}
+
+.opening-number,
+.ending-number {
+    margin-right: 4px;
 }
 
 

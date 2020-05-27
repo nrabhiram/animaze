@@ -64,9 +64,9 @@ const controlShow = async () => {
         state.show = new Show(id);
 
         // 3. Prepare UI for the result
-        renderLoader(elements.resultInfo);
         showView.clearResult();
-
+        renderLoader(elements.resultInfo);
+        
         // 4. Get information about the show
         await state.show.getShow();
 

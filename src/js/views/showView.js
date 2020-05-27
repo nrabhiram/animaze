@@ -6,7 +6,7 @@ export const clearResult = () => {
 
 export const renderDetails = (show) => {
     let markup;
-    if (show.type) {
+    if (show.type && show.type !== 'Unknown') {
         markup = `
             <div class="anime-details">
                 <figure class="anime-fig">
@@ -14,14 +14,35 @@ export const renderDetails = (show) => {
                 </figure>
                 <div class="anime-data">
                     <div class="anime-title">${show.title}</div>
-                    <div class="anime-episodes"><span class="highlight">Episodes</span>: ${show.episodes}</div>
-                    <div class="anime-episode-duration"><span class="highlight">${show.duration}</span>min per ep</div>
-                    <div class="anime-rating"><span class="highlight">Rating</span>: ${show.rating}</div>
-                    <div class="anime-score"><span class="highlight">Score</span>: ${show.score}</div>
-                    <div class="anime-rank"><span class="highlight">Rank</span>: ${show.rank}</div>
-                    <div class="anime-duration">${show.airing === false ? show.aired : ''}</div>
-                    <div class="anime-genre"><span class="highlight">Genres</span>: Action, Adventure, Comedy, Drama, Sci-Fi, Space</div>
-                    <div class="anime-type"><span class="highlight">Type</span>: ${show.type}</div>
+
+                    <div class="details-container anime-episodes">
+                        <div class="highlight">Episodes:</div>
+                        <div> ${show.episodes ? show.episodes : 'N/A'} (${show.duration})</div>
+                    </div>
+                    <div class="details-container anime-rating">
+                        <div class="highlight">Rating:</div>
+                        <div> ${show.rating ? show.rating : 'N/A'}</div>
+                    </div>
+                    <div class="details-container anime-score">
+                        <div class="highlight">Score:</div>
+                        <div> ${show.score ? show.score : 'N/A'}</div>
+                    </div>
+                    <div class="details-container anime-rank">
+                        <div class="highlight">Rank:</div>
+                        <div> ${show.rank ? show.rank : 'N/A'}</div>
+                    </div>
+                    <div class="details-container anime-duration">
+                        <div class="highlight">Aired:</div>
+                        <div> ${show.airing === false ? show.aired : 'Airing'}</div>
+                    </div>
+                    <div class="details-container anime-genre">
+                        <div class="highlight">Genres:</div>
+                        <div> ${renderGenres(show)}</div>
+                    </div>
+                    <div class="details-container anime-type">
+                        <div class="highlight">Type:</div>
+                        <div> ${show.type}</div>
+                    </div>
                 </div>
             </div>
         `;
@@ -109,7 +130,12 @@ const renderOpenings = (show) => {
     if (show.openings.length !== 0 && show.openings[0] !== 'None') {
         markupOpenings = show.openings.map((el, id) => {
             el.replace(/ *\([^)]*\) */g, '');
-            return `<div class="opening">${id + 1}. ${el}</div>`
+            return `
+                <div class="opening">
+                    <div class="opening-number">${id + 1}.</div>
+                    <div>${el}</div>
+                </div>
+            `;
         });
         markupOpenings = markupOpenings.join(' ');
         markupOpenings = `<div class="openings-heading">Openings</div>${markupOpenings}`;
@@ -124,14 +150,32 @@ const renderEndings = (show) => {
     if (show.endings.length !== 0) {
         markupEndings = show.endings.map((el, id) => {
             el.replace(/ *\([^)]*\) */g, '');
-            return `<div class="ending">${id + 1}. ${el}</div>`
+            return `
+                <div class="ending">
+                    <div class="ending-number">${id + 1}.</div>
+                    <div>${el}</div>
+                </div>
+            `;
         });
         markupEndings = markupEndings.join(' ');
-        markupEndings = `<div class="endings-heading">Endings</div>${markupEndings}`
+        markupEndings = `<div class="endings-heading">Endings</div>${markupEndings}`;
     } else {
         markupEndings = '';
     }
     return markupEndings;
+}
+
+const renderGenres = (show) => {
+    let markupGenre;
+    if (show.genres.lenght !== 0) {
+        markupGenre = show.genres.map(el => {
+            return el.name;
+        });
+        markupGenre = markupGenre.join(', ');
+    } else {
+        markupGenre = 'N/A';
+    }
+    return markupGenre;
 }
 
 
