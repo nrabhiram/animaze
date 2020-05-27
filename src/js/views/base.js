@@ -4,7 +4,8 @@ export const elements = {
     results: document.querySelector('.results'),
     resultsList: document.querySelector('.results__list'),
     resultsPagination: document.querySelector('.results__pages'),
-    resultInfo: document.querySelector('.anime')
+    resultInfo: document.querySelector('.anime'),
+    resultsOpening: document.querySelector('.openings')
 }
 
 export const renderLoader = (parent) => {

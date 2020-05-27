@@ -1,5 +1,6 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
+import * as showView from './views/showView';
 import { elements, renderLoader, clearLoader } from './views/base';
 import Show from './models/Show';
 
@@ -31,9 +32,9 @@ const controlSearch = async () => {
         await state.search.getResults();
 
         // 5. Render the results on the UI
-        console.log(state.search.shows);
+        console.log(state.search.results);
         clearLoader();
-        searchView.renderResults(state.search.shows);
+        searchView.renderResults(state.search.results);
     }
 }
 
@@ -48,7 +49,7 @@ elements.resultsPagination.addEventListener('click', e => {
         const goToPage = parseInt(button.dataset.goto, 10);
         searchView.clearButtons();
         searchView.clearResults();
-        searchView.renderResults(state.search.shows, goToPage);
+        searchView.renderResults(state.search.results, goToPage);
     }
 })
 
@@ -64,6 +65,7 @@ const controlShow = async () => {
 
         // 3. Prepare UI for the result
         renderLoader(elements.resultInfo);
+        showView.clearResult();
 
         // 4. Get information about the show
         await state.show.getShow();
@@ -71,6 +73,12 @@ const controlShow = async () => {
         // 5. Render information on the UI
         clearLoader();
         console.log(state.show);
+        showView.renderDetails(state.show);
+        showView.renderPlot(state.show);
+        showView.renderTrivia(state.show);
+        showView.renderSongs(state.show);
+        showView.renderTrailer(state.show);
+        //sshowView.test(state.show.openings);
     }
 }
 

@@ -462,14 +462,20 @@ body {
 .anime-rating,
 .anime-score,
 .anime-rank,
-.anime-duration {
+.anime-duration,
+.anime-genre,
+.anime-type {
     font-size: 1.4rem;
 }
 
 
 
+.highlight {
+    color: #66a6ff;
+}
+
 .anime-fig {
-    height: 20rem;
+    height: 30rem;
     width: 20rem;
     position: relative;
     transform-origin: top; 
@@ -499,6 +505,10 @@ body {
     justify-content: space-between;
 }
 
+.anime-trivia {
+    margin-top: 3rem;
+}
+
 .anime__love {
     background-image: linear-gradient(45deg, #89f7fe 0%, #66a6ff 100%);
     border-radius: 50%;
@@ -522,13 +532,47 @@ body {
     width: 2.75rem;
     fill: #fff; }
 
-.plot-heading {
+.plot-heading,
+.trivia-heading {
     font-size: 2.5rem;
     color: #66a6ff;
     margin-bottom: 1.5rem;
 }
 
-.plot-body {
+.anime-ost {
+    margin-top: 2rem;
+}
+
+
+
+.endings {
+    margin-top: 1rem;
+}
+@media only screen and (max-width: 600px) {
+    .endings {
+        margin-top: 0;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .endings {
+        margin-top: 1rem;
+    }
+}
+
+.openings-heading,
+.endings-heading {
+    font-size: 2rem;
+    color: #66a6ff;
+    margin-bottom: 0.5rem;
+}
+
+.opening,
+.ending {
+    font-size: 1.4rem
+}
+
+.plot-body,
+.trivia-body {
     padding-right: 1rem;
     font-size: 1.6rem;
     text-align: justify;

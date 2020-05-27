@@ -74,7 +74,7 @@ const renderButtons = (totalNumResults, page, resultsPerPage) => {
 }
 
 
-export const renderResults = (shows, page = 1, resultsPerPage = 8) => {
+export const renderResults = (shows, page = 1, resultsPerPage = 10) => {
     const start = (page - 1) * resultsPerPage;
     const end = page * resultsPerPage;
     shows.slice(start, end).forEach(show => renderShow(show));

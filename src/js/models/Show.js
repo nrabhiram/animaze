@@ -7,7 +7,7 @@ export default class Show {
 
     async getShow() {
         const show = await axios(`https://api.jikan.moe/v3/anime/${this.id}`);
-        //this.information = show.data;
+        this.information = show.data;
         this.airing = show.data.airing;
         this.duration = show.data.duration;
         this.rating = show.data.rating;
@@ -23,5 +23,6 @@ export default class Show {
         this.endings = show.data.ending_themes;
         this.trivia = show.data.background;
         this.genres = show.data.genres;
+        this.score = show.data.score;
     }
 }
