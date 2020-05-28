@@ -5,7 +5,9 @@ export const elements = {
     resultsList: document.querySelector('.results__list'),
     resultsPagination: document.querySelector('.results__pages'),
     resultInfo: document.querySelector('.anime'),
-    resultsOpening: document.querySelector('.openings')
+    resultsOpening: document.querySelector('.openings'),
+    resultsTrailer: document.querySelector('.trailer'),
+    trailerCross: document.querySelector('.close')
 }
 
 export const renderLoader = (parent) => {

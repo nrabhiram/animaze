@@ -4,6 +4,10 @@ export const clearResult = () => {
     elements.resultInfo.innerHTML = '';
 }
 
+export const clearTrailer = () => {
+    elements.resultsTrailer.innerHTML = '';
+}
+
 export const renderDetails = (show) => {
     let markup;
     if (show.type && show.type !== 'Unknown') {
@@ -108,6 +112,7 @@ export const renderSongs = show => {
 
 export const renderTrailer = show => {
     let markup;
+    let markupTrailer;
     if (show.trailer) {
         markup = `
             <div class="anime-trailer">
@@ -119,10 +124,18 @@ export const renderTrailer = show => {
                 </button>
             </div>
         `;
+        markupTrailer = `
+            <iframe src="${show.trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <svg class="close">
+                <use href="img/icons.svg#icon-circle-with-cross"></use>
+            </svg>
+        `;
     } else {
         markup = '';
+        markupTrailer = '';
     }
     elements.resultInfo.insertAdjacentHTML('beforeend', markup);
+    elements.resultsTrailer.insertAdjacentHTML('afterbegin', markupTrailer);
 }
 
 const renderOpenings = (show) => {

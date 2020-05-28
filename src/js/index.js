@@ -65,6 +65,7 @@ const controlShow = async () => {
 
         // 3. Prepare UI for the result
         showView.clearResult();
+        showView.clearTrailer();
         renderLoader(elements.resultInfo);
         
         // 4. Get information about the show
@@ -83,3 +84,20 @@ const controlShow = async () => {
 }
 
 window.addEventListener('hashchange', controlShow);
+
+elements.resultInfo.addEventListener('click', e => {
+    const button = e.target.closest('.anime__btn');
+    
+    if (button) {
+        elements.resultsTrailer.classList.toggle('active');
+    }
+});
+
+elements.resultsTrailer.addEventListener('click', e=> {
+    const button = e.target.closest('.close');
+
+    if (button) {
+        showView.clearTrailer();
+        elements.resultsTrailer.classList.toggle('active');
+    }
+})
