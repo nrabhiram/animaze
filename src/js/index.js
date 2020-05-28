@@ -1,8 +1,10 @@
 import Search from './models/Search';
+import Show from './models/Show';
+import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as showView from './views/showView';
 import { elements, renderLoader, clearLoader } from './views/base';
-import Show from './models/Show';
+
 
 /** Global state of the app
  * - Search object
@@ -10,6 +12,8 @@ import Show from './models/Show';
  * - Liked shows object
  */
 const state = {};
+
+
 
 /**
  * SEARCH CONTROLLER
@@ -32,7 +36,7 @@ const controlSearch = async () => {
         await state.search.getResults();
 
         // 5. Render the results on the UI
-        console.log(state.search.results);
+        //console.log(state.search.results);
         clearLoader();
         searchView.renderResults(state.search.results);
     }
@@ -73,7 +77,7 @@ const controlShow = async () => {
 
         // 5. Render information on the UI
         clearLoader();
-        console.log(state.show);
+        //console.log(state.show);
         showView.renderShow(state.show);
     }
 }
@@ -83,9 +87,12 @@ window.addEventListener('load', controlShow);
 
 elements.resultInfo.addEventListener('click', e => {
     const button = e.target.closest('.anime__btn');
+    const likeButton = e.target.matches('.anime__love, .anime__love *');
     
     if (button) {
         elements.resultsTrailer.classList.toggle('active');
+    } else if (likeButton) {
+        controlLikes();
     }
 });
 
@@ -98,5 +105,33 @@ elements.resultsTrailer.addEventListener('click', e=> {
         video.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
     }
 });
+
+
+/**
+ * LIKES CONTROLLER
+ */
+const controlLikes = () => {
+    if (!state.likes) state.likes = new Likes();
+    const currentID = state.show.id;
+
+    // If the show is NOT liked
+    if (!state.likes.isLiked(currentID)) {
+        // 1. Add like to the state
+        state.likes.addLike(currentID, state.show.title, state.show.type, state.show.image);
+
+        // 2. Render the like on the UI
+        console.log(state.likes.likes)
+    // If the show IS liked
+    } else {
+        // 1. Remove like from the state
+        state.likes.deleteLike(currentID);
+        // 2. Update UI
+        console.log(state.likes.likes);
+    }
+}
+
+
+
+
 
 
