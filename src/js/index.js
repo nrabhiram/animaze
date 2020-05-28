@@ -75,7 +75,6 @@ const controlShow = async () => {
         clearLoader();
         console.log(state.show);
         showView.renderShow(state.show);
-        //showView.test(state.show.openings);
     }
 }
 
@@ -96,5 +95,8 @@ elements.resultsTrailer.addEventListener('click', e=> {
 
     if (button) {
         elements.resultsTrailer.classList.toggle('active');
+        video.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
     }
-})
+});
+
+
