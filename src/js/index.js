@@ -74,16 +74,13 @@ const controlShow = async () => {
         // 5. Render information on the UI
         clearLoader();
         console.log(state.show);
-        showView.renderDetails(state.show);
-        showView.renderPlot(state.show);
-        showView.renderTrivia(state.show);
-        showView.renderSongs(state.show);
-        showView.renderTrailer(state.show);
-        //sshowView.test(state.show.openings);
+        showView.renderShow(state.show);
+        //showView.test(state.show.openings);
     }
 }
 
 window.addEventListener('hashchange', controlShow);
+window.addEventListener('load', controlShow);
 
 elements.resultInfo.addEventListener('click', e => {
     const button = e.target.closest('.anime__btn');
@@ -95,9 +92,9 @@ elements.resultInfo.addEventListener('click', e => {
 
 elements.resultsTrailer.addEventListener('click', e=> {
     const button = e.target.closest('.close');
+    let video = elements.resultsTrailer.children[0]
 
     if (button) {
-        showView.clearTrailer();
         elements.resultsTrailer.classList.toggle('active');
     }
 })

@@ -697,12 +697,7 @@ body {
     transition: all 2s ease;
 }
 
-.trailer .video {
-    position: relative;
-    width: 900px;
 
-    
-}
 
 .active {
     visibility: visible;

@@ -8,7 +8,8 @@ export const clearTrailer = () => {
     elements.resultsTrailer.innerHTML = '';
 }
 
-export const renderDetails = (show) => {
+
+const renderDetails = (show) => {
     let markup;
     if (show.type && show.type !== 'Unknown') {
         markup = `
@@ -53,10 +54,10 @@ export const renderDetails = (show) => {
     } else {
         markup = `Sorry! We don't have any information on this :(`;
     }
-    elements.resultInfo.insertAdjacentHTML('beforeend', markup);
+    return markup;
 }
 
-export const renderPlot = show => {
+const renderPlot = show => {
     let markup;
     if (show.synopsis) {
         markup = `
@@ -75,11 +76,11 @@ export const renderPlot = show => {
     } else {
         markup = '';
     }
-    
-    elements.resultInfo.insertAdjacentHTML('beforeend', markup);
+
+    return markup;
 }
 
-export const renderTrivia = show => {
+const renderTrivia = show => {
     let markup;
     if (show.trivia) {
         markup = `
@@ -93,10 +94,10 @@ export const renderTrivia = show => {
     } else {
         markup = '';
     }
-    elements.resultInfo.insertAdjacentHTML('beforeend', markup);
+    return markup;
 }
 
-export const renderSongs = show => {
+const renderSongs = show => {
     const markup = `
         <div class="anime-ost">
             <div class="openings">
@@ -106,13 +107,13 @@ export const renderSongs = show => {
                 ${renderEndings(show)}
             </div>
         </div>
-    `
-    elements.resultInfo.insertAdjacentHTML('beforeend', markup);
+    `;
+    return markup
 }
 
-export const renderTrailer = show => {
+const renderTrailerButton = show => {
     let markup;
-    let markupTrailer;
+    
     if (show.trailer) {
         markup = `
             <div class="anime-trailer">
@@ -124,18 +125,25 @@ export const renderTrailer = show => {
                 </button>
             </div>
         `;
-        markupTrailer = `
-            <iframe src="${show.trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    } else {
+        markup = '';
+    }
+    return markup;
+}
+
+const renderTrailer = show => {
+    let markup;
+    if (show.trailer) {
+        markup = `
+            <iframe src="${show.trailer}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <svg class="close">
                 <use href="img/icons.svg#icon-circle-with-cross"></use>
             </svg>
         `;
     } else {
         markup = '';
-        markupTrailer = '';
     }
-    elements.resultInfo.insertAdjacentHTML('beforeend', markup);
-    elements.resultsTrailer.insertAdjacentHTML('afterbegin', markupTrailer);
+    return markup;
 }
 
 const renderOpenings = (show) => {
@@ -189,6 +197,21 @@ const renderGenres = (show) => {
         markupGenre = 'N/A';
     }
     return markupGenre;
+}
+
+export const renderShow = show => {
+    const markup = `
+        ${renderDetails(show)}
+        ${renderPlot(show)}
+        ${renderTrivia(show)}
+        ${renderSongs(show)}
+        ${renderTrailerButton(show)}
+    `;
+
+    const markupTrailer = renderTrailer(show);
+
+    elements.resultInfo.insertAdjacentHTML('afterbegin', markup);
+    elements.resultsTrailer.insertAdjacentHTML('afterbegin', markupTrailer);
 }
 
 

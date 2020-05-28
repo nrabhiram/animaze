@@ -7,6 +7,7 @@ export const elements = {
     resultInfo: document.querySelector('.anime'),
     resultsOpening: document.querySelector('.openings'),
     resultsTrailer: document.querySelector('.trailer'),
+    trailerVideo: document.querySelector('.video'),
     trailerCross: document.querySelector('.close')
 }
 
