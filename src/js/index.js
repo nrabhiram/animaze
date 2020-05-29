@@ -67,6 +67,7 @@ elements.searchForm.addEventListener('submit', e => {
 
 window.addEventListener('load', () => {
     controlSearch();
+    searchView.isTransformed()
 });
 
 elements.resultsPagination.addEventListener('click', e => {
