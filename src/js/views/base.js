@@ -11,6 +11,7 @@ export const elements = {
     trailerCross: document.querySelector('.close'),
     likedShows: document.querySelector('.likes__list'),
     likeMenu: document.querySelector('.likes__field'),
+    likesResultsPagination: document.querySelector('.likes__pages')
 }
 
 export const renderLoader = (parent) => {
@@ -31,3 +32,4 @@ export const clearLoader = () => {
         loader.parentElement.removeChild(loader);
     }
 }
+

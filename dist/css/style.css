@@ -269,8 +269,8 @@ body {
     }
 }
 
-
-.likes__field:hover + .likes__panel {
+ .likes__field:hover + 
+.likes__panel {
     visibility: visible;
     opacity: 1;
 }

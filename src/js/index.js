@@ -15,7 +15,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 const state = {};
 
 
-
 /**
  * SEARCH CONTROLLER
  */
@@ -23,7 +22,7 @@ const controlSearch = async () => {
     // 1. Get input query from search
     const query = searchView.getInput()
     
-    if (query) {
+    if (query !== '') {
         // 2. Create new Search object and add it to the state
         state.search = new Search(query);
 
@@ -41,6 +40,23 @@ const controlSearch = async () => {
         //console.log(state.search.results);
         clearLoader();
         searchView.renderResults(state.search.results);
+    } else {
+        // 2. Create new Search object and add it to the state
+        state.search = new Search('');
+
+        // 3. Prepare UI for the results (a loader)
+        searchView.toggleResults();
+        searchView.clearInput();
+        searchView.clearResults();
+        searchView.clearButtons();
+        renderLoader(elements.results);
+
+        // 4. Get the results for the input
+        await state.search.getTopResults();
+
+        // 5. Render the results on the UI
+        clearLoader();
+        searchView.renderResults(state.search.top);
     }
 }
 
@@ -49,15 +65,21 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 });
 
+window.addEventListener('load', controlSearch);
+
 elements.resultsPagination.addEventListener('click', e => {
     const button = e.target.closest('.btn-inline');
     if (button) {
         const goToPage = parseInt(button.dataset.goto, 10);
         searchView.clearButtons();
         searchView.clearResults();
-        searchView.renderResults(state.search.results, goToPage);
+        if (state.search.results) {
+            searchView.renderResults(state.search.results, goToPage); 
+        } else {
+            searchView.renderResults(state.search.top, goToPage);
+        }
     }
-})
+});
 
 /**
  * SHOW CONTROLLER
@@ -157,10 +179,16 @@ window.addEventListener('load', () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 
     // Render previously liked shows
-    state.likes.likes.forEach(like => {
-        likesView.renderLike(like);
-    });
+    likesView.renderLikes(state.likes.likes)
 });
+
+elements.likesResultsPagination.addEventListener('click', e => {
+    const button = e.target.matches('.results__btn, .results__btn *');
+    if (button) {
+        const goToPage = parseInt(button.dataset.goto, 10);
+        likesView.renderResults(state.search.results, goToPage);
+    }
+})
 
 
 
