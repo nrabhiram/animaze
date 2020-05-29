@@ -295,7 +295,7 @@ body {
 }
 
 .content {
-    min-height: 70rem;
+    min-height: 100rem;
     width: 100%;
     margin-top: 0.4rem;
     display: flex;
@@ -484,6 +484,12 @@ body {
     transform-origin: top; 
     display: inline-block;
 }
+@media only screen and (max-width: 600px) {
+    .anime-fig {
+        height: 20rem;
+    }
+}
+
 .anime-fig::before {
     content: '';
     display: block;

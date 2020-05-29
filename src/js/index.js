@@ -70,7 +70,7 @@ const controlShow = async () => {
         state.show = new Show(id);
 
         // 3. Prepare UI for the result
-        searchView.toggleResults();
+        elements.results.classList.remove('transform');
         showView.clearResult();
         showView.clearTrailer();
         renderLoader(elements.resultInfo);
