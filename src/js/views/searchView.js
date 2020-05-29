@@ -14,7 +14,11 @@ export const clearButtons = () => {
     elements.resultsPagination.innerHTML = '';
 }
 
-const formatTitle = (title, limit = 18) => {
+export const toggleResults = () => {
+    elements.results.classList.toggle('transform');
+}
+
+export const formatTitle = (title, limit = 18) => {
     const newTitle = [];
     if (title.length > 20) {
         title.split(' ').reduce((acc, cur) => {

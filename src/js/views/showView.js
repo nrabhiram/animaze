@@ -8,7 +8,6 @@ export const clearTrailer = () => {
     elements.resultsTrailer.innerHTML = '';
 }
 
-
 const renderDetails = (show) => {
     let markup;
     if (show.type && show.type !== 'Unknown') {
@@ -57,7 +56,7 @@ const renderDetails = (show) => {
     return markup;
 }
 
-const renderPlot = show => {
+const renderPlot = (show, isLiked) => {
     let markup;
     if (show.synopsis) {
         markup = `
@@ -65,7 +64,7 @@ const renderPlot = show => {
                 <div class="plot-heading">Plot</div>
                 <div class="anime__love">
                     <svg class="header__likes">
-                        <use href="img/icons.svg#icon-heart-outlined"></use>
+                        <use href="img/icons.svg#icon-heart${isLiked ? '' : '-outlined'}"></use>
                     </svg>
                 </div>
             </div>
@@ -199,10 +198,10 @@ const renderGenres = (show) => {
     return markupGenre;
 }
 
-export const renderShow = show => {
+export const renderShow = (show, isLiked) => {
     const markup = `
         ${renderDetails(show)}
-        ${renderPlot(show)}
+        ${renderPlot(show, isLiked)}
         ${renderTrivia(show)}
         ${renderSongs(show)}
         ${renderTrailerButton(show)}

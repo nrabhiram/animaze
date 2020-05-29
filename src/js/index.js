@@ -3,6 +3,7 @@ import Show from './models/Show';
 import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as showView from './views/showView';
+import * as likesView from './views/likesView'
 import { elements, renderLoader, clearLoader } from './views/base';
 
 
@@ -27,6 +28,7 @@ const controlSearch = async () => {
         state.search = new Search(query);
 
         // 3. Prepare UI for the results (a loader)
+        searchView.toggleResults();
         searchView.clearInput();
         searchView.clearResults();
         searchView.clearButtons();
@@ -68,6 +70,7 @@ const controlShow = async () => {
         state.show = new Show(id);
 
         // 3. Prepare UI for the result
+        searchView.toggleResults();
         showView.clearResult();
         showView.clearTrailer();
         renderLoader(elements.resultInfo);
@@ -78,7 +81,7 @@ const controlShow = async () => {
         // 5. Render information on the UI
         clearLoader();
         //console.log(state.show);
-        showView.renderShow(state.show);
+        showView.renderShow(state.show, state.likes.isLiked(id));
     }
 }
 
@@ -116,19 +119,49 @@ const controlLikes = () => {
 
     // If the show is NOT liked
     if (!state.likes.isLiked(currentID)) {
-        // 1. Add like to the state
-        state.likes.addLike(currentID, state.show.title, state.show.type, state.show.image);
+        // Add like to the state
+        const newLike = state.likes.addLike(currentID, state.show.title, state.show.type, state.show.image);
 
-        // 2. Render the like on the UI
-        console.log(state.likes.likes)
+        // Toggle like button
+        likesView.toggleLikeButton(true);
+
+        // Render the like on the UI
+        likesView.renderLike(newLike);
     // If the show IS liked
     } else {
-        // 1. Remove like from the state
+        // Remove like from the state
         state.likes.deleteLike(currentID);
-        // 2. Update UI
-        console.log(state.likes.likes);
+
+        // Toggle like button
+        likesView.toggleLikeButton(false);
+
+        // Update UI
+        likesView.deleteLike(currentID);
     }
+
+    // Add likes list to local storage
+    state.likes.persistData();
+
+    // Toggle like menu
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
+
+window.addEventListener('load', () => {
+    // Create new Likes object
+    state.likes = new Likes();
+
+    // Restore previously liked shows
+    state.likes.readStorage();
+
+    // Toggle like menu
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    // Render previously liked shows
+    state.likes.likes.forEach(like => {
+        likesView.renderLike(like);
+    });
+});
+
 
 
 

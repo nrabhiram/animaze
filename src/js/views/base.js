@@ -8,7 +8,9 @@ export const elements = {
     resultsOpening: document.querySelector('.openings'),
     resultsTrailer: document.querySelector('.trailer'),
     trailerVideo: document.querySelector('.video'),
-    trailerCross: document.querySelector('.close')
+    trailerCross: document.querySelector('.close'),
+    likedShows: document.querySelector('.likes__list'),
+    likeMenu: document.querySelector('.likes__field'),
 }
 
 export const renderLoader = (parent) => {
