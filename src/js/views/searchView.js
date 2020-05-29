@@ -14,8 +14,8 @@ export const clearButtons = () => {
     elements.resultsPagination.innerHTML = '';
 }
 
-export const toggleResults = () => {
-    elements.results.classList.toggle('transform');
+export const isTransformed = () => {
+    elements.results.classList.contains('transform') ? elements.results.classList.remove('transform') : elements.results.classList.add('transform');
 }
 
 export const formatTitle = (title, limit = 18) => {
