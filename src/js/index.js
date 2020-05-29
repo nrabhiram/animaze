@@ -27,7 +27,6 @@ const controlSearch = async () => {
         state.search = new Search(query);
 
         // 3. Prepare UI for the results (a loader)
-        searchView.isTransformed();
         searchView.clearInput();
         searchView.clearResults();
         searchView.clearButtons();
@@ -45,7 +44,6 @@ const controlSearch = async () => {
         state.search = new Search('');
 
         // 3. Prepare UI for the results (a loader)
-        searchView.isTransformed();
         searchView.clearInput();
         searchView.clearResults();
         searchView.clearButtons();
@@ -58,6 +56,8 @@ const controlSearch = async () => {
         clearLoader();
         searchView.renderResults(state.search.top);
     }
+
+    searchView.isTransformed();
 }
 
 elements.searchForm.addEventListener('submit', e => {
@@ -67,7 +67,6 @@ elements.searchForm.addEventListener('submit', e => {
 
 window.addEventListener('load', () => {
     controlSearch();
-    searchView.isTransformed();
 });
 
 elements.resultsPagination.addEventListener('click', e => {
