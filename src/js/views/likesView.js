@@ -1,6 +1,14 @@
 import { elements } from './base';
 import { formatTitle } from './searchView';
 
+export const clearButtons = () => {
+    elements.likesResultsPagination.innerHTML = '';
+}
+
+export const clearLikes = () => {
+    elements.likedShows.innerHTML = '';
+}
+
 export const toggleLikeButton = (isLiked) => {
     const likeString = isLiked ? 'icon-heart' : 'icon-heart-outlined';
     document.querySelector('.anime__love use').setAttribute('href', `img/icons.svg#${likeString}`);
@@ -20,7 +28,7 @@ export const renderLikes = (likes, page = 1, likesPerPage = 5) => {
 }
 
 const createButton = (type, page) => `
-        <button class="btn-inline results__btn--${type}" data-goto="${type === 'prev' ? page - 1 : page + 1}">
+        <button class="btn-inline results__btn--${type}" data-goTo="${type === 'prev' ? page - 1 : page + 1}">
             <svg>
                 <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
             </svg>

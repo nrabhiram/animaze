@@ -14,8 +14,20 @@ export const clearButtons = () => {
     elements.resultsPagination.innerHTML = '';
 }
 
-export const isTransformed = () => {
-    elements.results.classList.contains('transform') ? elements.results.classList.remove('transform') : elements.results.classList.add('transform');
+export const transformResults = () => {
+    const isTransformed = elements.results.classList.contains('transform');
+    
+    if (!isTransformed) {
+        elements.results.classList.add('transform');
+    }
+}
+
+export const removeResults = () => {
+    const isTransformed = elements.results.classList.contains('transform');
+
+    if (isTransformed) {
+        elements.results.classList.remove('transform');
+    }
 }
 
 export const formatTitle = (title, limit = 18) => {

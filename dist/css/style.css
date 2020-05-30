@@ -269,8 +269,13 @@ body {
     }
 }
 
- .likes__field:hover + 
+.likes__field:hover + 
 .likes__panel {
+    visibility: visible;
+    opacity: 1;
+}
+
+.likes__panel:hover {
     visibility: visible;
     opacity: 1;
 }
@@ -703,8 +708,6 @@ body {
     opacity: 0;
     transition: all 2s ease;
 }
-
-
 
 .active {
     visibility: visible;

@@ -22,7 +22,7 @@ const controlSearch = async () => {
     // 1. Get input query from search
     const query = searchView.getInput()
     
-    if (query !== '') {
+    if (query) {
         // 2. Create new Search object and add it to the state
         state.search = new Search(query);
 
@@ -39,35 +39,31 @@ const controlSearch = async () => {
         //console.log(state.search.results);
         clearLoader();
         searchView.renderResults(state.search.results);
-    } else {
-        // 2. Create new Search object and add it to the state
-        state.search = new Search('');
-
-        // 3. Prepare UI for the results (a loader)
-        searchView.clearInput();
-        searchView.clearResults();
-        searchView.clearButtons();
-        renderLoader(elements.results);
-
-        // 4. Get the results for the input
-        await state.search.getTopResults();
-
-        // 5. Render the results on the UI
-        clearLoader();
-        searchView.renderResults(state.search.top);
     }
-
-    searchView.isTransformed();
 }
+
+const topSearch = async () => {
+    // 1. Create new Search object and add it to the state
+    state.search = new Search('');
+
+    // 2. Prepare UI for the results (a loader)
+    searchView.clearInput();
+    searchView.clearResults();
+    searchView.clearButtons();
+    renderLoader(elements.results);
+
+    // 3. Get the results for the input
+    await state.search.getTopResults();
+
+    // 4. Render the results on the UI
+    clearLoader();
+    searchView.renderResults(state.search.top);
+}
+
 
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
-});
-
-window.addEventListener('load', () => {
-    controlSearch();
-    searchView.isTransformed()
 });
 
 elements.resultsPagination.addEventListener('click', e => {
@@ -84,6 +80,17 @@ elements.resultsPagination.addEventListener('click', e => {
     }
 });
 
+elements.searchButton.addEventListener('click', () => {
+    searchView.transformResults();
+});
+
+elements.results.addEventListener('click', e => {
+    const result = e.target.matches('.results__link, .results__link *');
+    if (result) {
+        searchView.removeResults();
+    }
+})
+
 /**
  * SHOW CONTROLLER
  */
@@ -95,7 +102,6 @@ const controlShow = async () => {
         state.show = new Show(id);
 
         // 3. Prepare UI for the result
-        searchView.isTransformed();
         showView.clearResult();
         showView.clearTrailer();
         renderLoader(elements.resultInfo);
@@ -107,6 +113,8 @@ const controlShow = async () => {
         clearLoader();
         //console.log(state.show);
         showView.renderShow(state.show, state.likes.isLiked(id));
+    } else {
+        await topSearch();
     }
 }
 
@@ -126,11 +134,12 @@ elements.resultInfo.addEventListener('click', e => {
 
 elements.resultsTrailer.addEventListener('click', e=> {
     const button = e.target.closest('.close');
-    let video = elements.resultsTrailer.children[0]
+    let video = elements.resultsTrailer.children[0].children[0].children[0];
 
     if (button) {
         elements.resultsTrailer.classList.toggle('active');
         video.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
+        
     }
 });
 
@@ -186,10 +195,12 @@ window.addEventListener('load', () => {
 });
 
 elements.likesResultsPagination.addEventListener('click', e => {
-    const button = e.target.matches('.results__btn, .results__btn *');
+    const button = e.target.closest('.btn-inline');
     if (button) {
         const goToPage = parseInt(button.dataset.goto, 10);
-        likesView.renderResults(state.search.results, goToPage);
+        likesView.clearButtons();
+        likesView.clearLikes();
+        likesView.renderLikes(state.likes.likes, goToPage);
     }
 })
 
