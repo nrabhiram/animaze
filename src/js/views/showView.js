@@ -136,7 +136,7 @@ const renderTrailer = show => {
         markup = `
             <div class="wrapper">
                 <div class="iframe-container">
-                    <iframe src="${show.trailer}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="${show.trailer}list=PL4Zkb_7gMrOzZlVy7jIeCjwScavYp6ssm&rel=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             <svg class="close">

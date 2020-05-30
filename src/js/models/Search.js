@@ -14,4 +14,9 @@ export default class Search {
         const res = await axios(`https://api.jikan.moe/v3/top/anime/1`);
         this.top = res.data.top;
     }
+
+    async getGenreResults(genre) {
+        const res = await axios(`https://api.jikan.moe/v3/genre/anime/${genre}/1`);
+        this.genre = res.data.anime;
+    }
 }

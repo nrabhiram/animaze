@@ -28,7 +28,7 @@ export const renderLikes = (likes, page = 1, likesPerPage = 5) => {
 }
 
 const createButton = (type, page) => `
-        <button class="btn-inline results__btn--${type}" data-goTo="${type === 'prev' ? page - 1 : page + 1}">
+        <button class="btn-inline results__btn--${type} like__btn" data-goTo="${type === 'prev' ? page - 1 : page + 1}">
             <svg>
                 <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
             </svg>
@@ -49,6 +49,8 @@ const renderButtons = (totalNumResults, page, resultsPerPage) => {
         `;
     } else if (page === pages && pages > 1) {
         button = createButton('prev', page);
+    } else if (pages === 1) {
+        button = '';
     }
 
     elements.likesResultsPagination.insertAdjacentHTML('afterbegin', button);

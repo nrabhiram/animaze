@@ -14,11 +14,16 @@ body {
     overflow-x: hidden;
     height: 100%;
 }
+
+/*
 @media only screen and (max-width: 700px) {
     html {
         height: auto;
     }
 }
+*/
+
+
 
 
 html {
@@ -148,6 +153,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /*
+    height: 100%;
+    */
+    
 }
 
 .header {
@@ -269,16 +278,20 @@ body {
     }
 }
 
+/*
 .likes__field:hover + 
 .likes__panel {
     visibility: visible;
     opacity: 1;
 }
 
-.likes__panel:hover {
+.likes__panel:hover,
+.likes__panel:active {
     visibility: visible;
     opacity: 1;
 }
+*/
+
 
 .likes__panel {
     position: absolute;
@@ -299,8 +312,13 @@ body {
     }
 }
 
+.display-likes {
+    visibility: visible;
+    opacity: 1;
+}
+
 .content {
-    min-height: 100rem;
+    min-height: 80rem;
     width: 100%;
     margin-top: 0.4rem;
     display: flex;
@@ -324,7 +342,7 @@ body {
         position: absolute;
         top: 0;
         right: 0;
-        height: 100%;
+        min-height: 100%;
         width: 100%;
         z-index: 100;
         transform: translate(100%);
@@ -744,15 +762,36 @@ body {
     width: 100%;
     padding-bottom: 56.25%; 
     height: 0;
-  }
-  .iframe-container iframe{
+}
+.iframe-container iframe{
     position: absolute;
     top:0;
     left: 0;
     width: 100%;
     height: 100%;
     cursor: default;
-  }
+}
+
+.anime-genres {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.genre-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 1rem;
+}
+
+.title {
+    font-size: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #66a6ff;
+    margin: 1rem 0;
+}
 
 
 

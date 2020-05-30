@@ -12,7 +12,9 @@ export const elements = {
     trailerCross: document.querySelector('.close'),
     likedShows: document.querySelector('.likes__list'),
     likeMenu: document.querySelector('.likes__field'),
-    likesResultsPagination: document.querySelector('.likes__pages')
+    likesResultsPagination: document.querySelector('.likes__pages'),
+    likesPanel: document.querySelector('.likes__panel'),
+    animeGenres: document.querySelector('.anime-genres')
 }
 
 export const renderLoader = (parent) => {
