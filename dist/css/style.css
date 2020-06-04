@@ -27,9 +27,11 @@ body {
 
 
 
+
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+    /*height: 100%;*/
 }
 @media only screen and (max-width: 1200px) {
     html {
@@ -59,7 +61,7 @@ body {
     body {
         overflow-x: hidden;
         /*overflow-y: auto;*/
-        height: 100%;
+        height: 100vh;
     }
 }
 
@@ -710,7 +712,7 @@ body {
 .loader svg {
     height: 5.5rem;
     width: 5.5rem;
-    fill: #66a6ff;
+    fill: #ffa83c;
     transform-origin: 44% 50%;
     animation: rotate 1.5s infinite linear;
 }
