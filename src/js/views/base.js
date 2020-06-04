@@ -5,6 +5,7 @@ export const elements = {
     results: document.querySelector('.results'),
     resultsList: document.querySelector('.results__list'),
     resultsPagination: document.querySelector('.results__pages'),
+    resultContainer: document.querySelector('.anime-container'),
     resultInfo: document.querySelector('.anime'),
     resultsOpening: document.querySelector('.openings'),
     resultsTrailer: document.querySelector('.trailer'),
@@ -14,7 +15,8 @@ export const elements = {
     likeMenu: document.querySelector('.likes__field'),
     likesResultsPagination: document.querySelector('.likes__pages'),
     likesPanel: document.querySelector('.likes__panel'),
-    animeGenres: document.querySelector('.anime-genres')
+    animeGenres: document.querySelector('.anime-genres'),
+    content: document.querySelector('.content')
 }
 
 export const renderLoader = (parent) => {

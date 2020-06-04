@@ -1,7 +1,7 @@
 {
-  "name": "forkify",
+  "name": "animaze",
   "version": "1.0.0",
-  "description": "forkify project",
+  "description": "animaze project",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",

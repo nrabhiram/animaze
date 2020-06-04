@@ -9,6 +9,14 @@ export const clearLikes = () => {
     elements.likedShows.innerHTML = '';
 }
 
+export const highlightSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.likes__link'));
+    resultsArr.forEach(el => {
+        el.classList.remove('likes__link--active');
+    });
+    document.querySelector(`.likes__link[href*="#${id}"]`).classList.add('likes__link--active');
+}
+
 export const toggleLikeButton = (isLiked) => {
     const likeString = isLiked ? 'icon-heart' : 'icon-heart-outlined';
     document.querySelector('.anime__love use').setAttribute('href', `img/icons.svg#${likeString}`);
@@ -58,7 +66,7 @@ const renderButtons = (totalNumResults, page, resultsPerPage) => {
 
 export const renderLike = (like) => {
     const markup = `
-        <a class="likes__link likes__link--active" href="#${like.id}">
+        <a class="likes__link" href="#${like.id}">
             <figure class="results__fig">
                 <img src="${like.img}" alt="${like.title}">
             </figure>

@@ -32,13 +32,17 @@ const controlSearch = async () => {
         searchView.clearButtons();
         renderLoader(elements.results);
 
-        // 4. Get the results for the input
-        await state.search.getResults();
+        try {
+            // 4. Get the results for the input
+            await state.search.getResults();
 
-        // 5. Render the results on the UI
-        //console.log(state.search.results);
-        clearLoader();
-        searchView.renderResults(state.search.results);
+            // 5. Render the results on the UI
+            clearLoader();
+            searchView.renderResults(state.search.results);
+        } catch (err) {
+            alert('Something went wrong. Please try again!');
+            console.log(err);
+        }
     }
 }
 
@@ -52,12 +56,41 @@ const topSearch = async () => {
     searchView.clearButtons();
     renderLoader(elements.results);
 
-    // 3. Get the results for the input
-    await state.search.getTopResults();
+    try {
+        // 3. Get the results for the input
+        await state.search.getTopResults();
 
-    // 4. Render the results on the UI
-    clearLoader();
-    searchView.renderResults(state.search.top);
+        // 4. Render the results on the UI
+        clearLoader();
+        searchView.renderResults(state.search.top);
+    } catch (err) {
+        alert('Something went wrong. Please try again!');
+        console.log(err);
+    }
+}
+
+const genreSearch = async (button) => {
+    const genreID = button.dataset.genre;
+    state.search = new Search('');
+    searchView.transformResults();
+    // 3. Prepare UI for the results (a loader)
+    searchView.clearGenres();
+    searchView.clearInput();
+    searchView.clearResults();
+    searchView.clearButtons();
+    renderLoader(elements.results);
+
+    try {
+        // 4. Get the results for the input
+        await state.search.getGenreResults(genreID);
+
+        // 5. Render the results on the UI
+        clearLoader();
+        searchView.renderResults(state.search.genre);
+    } catch (err) {
+        alert('Something went wrong. Please try again!');
+        console.log(err);
+    }
 }
 
 
@@ -83,7 +116,7 @@ elements.resultsPagination.addEventListener('click', e => {
 });
 
 elements.searchButton.addEventListener('click', () => {
-    searchView.transformResults();
+    if (state.search || elements.searchInput.value) searchView.transformResults();
 });
 
 elements.results.addEventListener('click', e => {
@@ -93,27 +126,11 @@ elements.results.addEventListener('click', e => {
     }
 });
 
-elements.resultInfo.addEventListener('click', async (e) => {
+elements.resultInfo.addEventListener('click', (e) => {
     const button = e.target.closest('.genre-btn');
 
     if (button) {
-        const genreID = button.dataset.genre;
-        state.search = new Search('');
-        searchView.transformResults();
-        await state.search.getGenreResults(genreID);
-        // 3. Prepare UI for the results (a loader)
-        searchView.clearGenres();
-        searchView.clearInput();
-        searchView.clearResults();
-        searchView.clearButtons();
-        renderLoader(elements.results);
-
-        // 4. Get the results for the input
-        await state.search.getGenreResults(genreID);
-
-        // 5. Render the results on the UI
-        clearLoader();
-        searchView.renderResults(state.search.genre);
+        genreSearch(button);
     }
 })
 
@@ -124,6 +141,14 @@ const controlShow = async () => {
     // 1. Get the ID from the hashchange
     const id = location.hash.replace(/^#/, '');
     if (id) {
+        //if (state.search || elements.resultsList.children.length !== 0) searchView.highlightSelected(id);
+        //if (state.likes.isLiked(id)) likesView.highlightSelected(id);
+        /*
+        if (state.likes.isLiked(id)) {
+            likesView.highlightSelected(id);
+        }
+        */
+
         // 2. Create Show object and add it to the state
         state.show = new Show(id);
 
@@ -132,20 +157,32 @@ const controlShow = async () => {
         showView.clearTrailer();
         renderLoader(elements.resultInfo);
         
-        // 4. Get information about the show
-        await state.show.getShow();
+        try {
+            // 4. Get information about the show
+            await state.show.getShow();
 
-        // 5. Render information on the UI
-        clearLoader();
-        //console.log(state.show);
-        showView.renderShow(state.show, state.likes.isLiked(id));
+            // 5. Render information on the UI
+            clearLoader();
+            //console.log(state.show);
+            //if (state.search || elements.resultsList.children.length !== 0) searchView.highlightSelected(id);
+            showView.renderShow(state.show, state.likes.isLiked(id));
+        } catch (err) {
+            alert('Something went wrong. Please try again!');
+            console.log(err);
+        }
     } else {
-        await topSearch();
+        try {
+            await topSearch();
+        } catch (err) {
+            alert('Something went wrong. Please try again!');
+            console.log(err);
+        }
     }
+
 }
 
 window.addEventListener('hashchange', controlShow);
-window.addEventListener('load', controlShow);
+//window.addEventListener('load', controlShow);
 
 elements.resultInfo.addEventListener('click', e => {
     const button = e.target.closest('.anime__btn');
@@ -153,6 +190,7 @@ elements.resultInfo.addEventListener('click', e => {
     
     if (button) {
         elements.resultsTrailer.classList.toggle('active');
+        elements.content.classList.toggle('remove-overflow');
     } else if (likeButton) {
         controlLikes();
     }
@@ -164,8 +202,8 @@ elements.resultsTrailer.addEventListener('click', e=> {
 
     if (button) {
         elements.resultsTrailer.classList.toggle('active');
+        elements.content.classList.toggle('remove-overflow');
         video.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
-        
     }
 });
 
@@ -193,7 +231,6 @@ const controlLikes = () => {
 
         // Toggle like button
         likesView.toggleLikeButton(false);
-
     }
 
     // Add likes list to local storage
@@ -202,13 +239,15 @@ const controlLikes = () => {
     // Toggle like menu
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 
-    // 
+    // Render liked shows on the UI
     likesView.clearLikes();
     likesView.clearButtons();
     likesView.renderLikes(state.likes.likes);
 }
 
 window.addEventListener('load', () => {
+    controlShow();
+
     // Create new Likes object
     state.likes = new Likes();
 
@@ -219,7 +258,8 @@ window.addEventListener('load', () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 
     // Render previously liked shows
-    likesView.renderLikes(state.likes.likes)
+    likesView.renderLikes(state.likes.likes);
+
 });
 
 window.addEventListener('click', (e) => {
@@ -240,9 +280,14 @@ elements.likesResultsPagination.addEventListener('click', e => {
         likesView.clearButtons();
         likesView.clearLikes();
         likesView.renderLikes(state.likes.likes, goToPage);
-
     }
 })
+
+
+
+
+
+
 
 
 

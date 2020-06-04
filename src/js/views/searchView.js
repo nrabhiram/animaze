@@ -18,19 +18,32 @@ export const clearButtons = () => {
     elements.resultsPagination.innerHTML = '';
 }
 
+export const highlightSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add('results__link--active');
+}
+
 export const transformResults = () => {
     const isTransformed = elements.results.classList.contains('transform');
     
     if (!isTransformed) {
         elements.results.classList.add('transform');
+        elements.results.classList.remove('remove2');
+        elements.resultContainer.classList.add('remove');
     }
 }
+
 
 export const removeResults = () => {
     const isTransformed = elements.results.classList.contains('transform');
 
     if (isTransformed) {
         elements.results.classList.remove('transform');
+        elements.results.classList.add('remove2');
+        elements.resultContainer.classList.remove('remove');
     }
 }
 
