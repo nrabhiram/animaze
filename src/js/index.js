@@ -141,14 +141,6 @@ const controlShow = async () => {
     // 1. Get the ID from the hashchange
     const id = location.hash.replace(/^#/, '');
     if (id) {
-        //if (state.search || elements.resultsList.children.length !== 0) searchView.highlightSelected(id);
-        //if (state.likes.isLiked(id)) likesView.highlightSelected(id);
-        /*
-        if (state.likes.isLiked(id)) {
-            likesView.highlightSelected(id);
-        }
-        */
-
         // 2. Create Show object and add it to the state
         state.show = new Show(id);
 
@@ -182,7 +174,6 @@ const controlShow = async () => {
 }
 
 window.addEventListener('hashchange', controlShow);
-//window.addEventListener('load', controlShow);
 
 elements.resultInfo.addEventListener('click', e => {
     const button = e.target.closest('.anime__btn');
@@ -270,6 +261,14 @@ window.addEventListener('click', (e) => {
         elements.likesPanel.classList.toggle('display-likes');  
     } else if (!button && !buttonPage && !likeButton) {
         elements.likesPanel.classList.remove('display-likes'); 
+    }
+})
+
+elements.likedShows.addEventListener('click', e => {
+    const result = e.target.matches('.likes__link, .likes__link *');
+
+    if (result) {
+        searchView.removeResults();
     }
 })
 

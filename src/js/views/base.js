@@ -16,7 +16,7 @@ export const elements = {
     likesResultsPagination: document.querySelector('.likes__pages'),
     likesPanel: document.querySelector('.likes__panel'),
     animeGenres: document.querySelector('.anime-genres'),
-    content: document.querySelector('.content')
+    content: document.querySelector('body')
 }
 
 export const renderLoader = (parent) => {

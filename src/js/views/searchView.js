@@ -101,6 +101,8 @@ const renderButtons = (totalNumResults, page, resultsPerPage) => {
         `;
     } else if (page === pages && pages > 1) {
         button = createButton('prev', page);
+    } else if (page === 1 && pages === 1) {
+        button = '';
     }
 
     elements.resultsPagination.insertAdjacentHTML('afterbegin', button);
