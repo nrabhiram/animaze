@@ -12,27 +12,21 @@
 html,
 body {
     overflow-x: hidden;
-    /*height: 100%;*/
+    height: 100%;
 }
 
-/*
 @media only screen and (max-width: 700px) {
     html {
-        height: 100%;
+        height: 100vh;
+        height: auto;
     }
 }
-*/
-
-
-
-
 
 
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    overflow:auto;
-    /*height: 100%;*/
+    
 }
 @media only screen and (max-width: 1200px) {
     html {
@@ -42,15 +36,16 @@ html {
 @media only screen and (max-width: 900px) {
     html {
         font-size: 50%;
+        overflow-y: scroll;
     }
 }
+
 
 body {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
     line-height: 1.6;
     color: #555;
-    /*background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);*/
     background: #FFB75E;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFB75E, #ED8F03); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -59,13 +54,20 @@ body {
     min-height: calc(100vh - 2 * 4vw);
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 100vh;
 }
 @media only screen and (max-width: 900px) {
     body {
         overflow-x: hidden;
-        overflow-y: scroll;
-        height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    body {
+        height: 100%;
+        min-height: 100vh;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 }
 
@@ -76,9 +78,6 @@ body {
 .btn-small,
 .btn-small:link,
 .btn-small:visited {
-    /*background: linear-gradient(to right, #ff512f, #f09819);*/
-    /*background-image: linear-gradient(45deg, #89f7fe 0%, #66a6ff 100%);*/
-    /*background: linear-gradient(to right, #F37335, #FDC830);*/
     background: linear-gradient(to right, #FFB75E, #ED8F03);
     border-radius: 10rem;
     border: none;
@@ -132,8 +131,6 @@ body {
     color: #fff;
     font-size: 1.2rem;
     border: none;
-    /*background-image: linear-gradient(45deg, #89f7fe 0%, #66a6ff 100%);*/
-    /*background: linear-gradient(to right, #ff512f, #f09819);*/
     background: linear-gradient(to right, #FFB75E, #ED8F03);
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -165,7 +162,7 @@ body {
 /* MAIN */
 
 .container {
-    max-width: 120rem;
+    max-width: 140rem;
     background-color: #fff;
     margin: 4vw auto;
     box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
@@ -174,6 +171,13 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+@media only screen and (max-width: 700px) {
+    .container {
+        margin: 0;
+    }
+}
+
 
 /* HEADER */
 
@@ -328,7 +332,7 @@ body {
 /* RESULTS */
 
 .content {
-    /*height: 100%;*/
+    height: 100%;
     width: 100%;
     margin-top: 0.4rem;
     display: flex;
@@ -352,11 +356,9 @@ body {
         position: absolute;
         top: 0;
         right: 0;
-        min-height: 100%;
         width: 100%;
         z-index: 100;
         transform: translate(100%);
-        overflow-y: hidden;
         background-color: #fff;
         align-items: center;
     }
@@ -464,7 +466,7 @@ body {
 }
 
 .anime-container {
-    height: 100%;
+    /*height: 100%;*/
     flex-grow: 1;
     position: relative;
     display: flex;
@@ -481,7 +483,7 @@ body {
 }
 
 .anime-box {
-    height: 100%;
+    /*height: 100%;*/
     display: flex;
     padding: 1rem;
 }
@@ -569,9 +571,7 @@ body {
 }
 
 .anime__love {
-    /*background: linear-gradient(to right,  #f09819, #ff512f);*/
     background: linear-gradient(to right, #FFB75E, #ED8F03);
-    /*background-image: linear-gradient(45deg, #89f7fe 0%, #66a6ff 100%);*/
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -795,11 +795,17 @@ body {
 }
 
 .remove-overflow {
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
+    height: 100vh;
 }
 
 .likes__link--active {
     background-color: #eefeff;
+}
+
+.results__btn--next {
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 
