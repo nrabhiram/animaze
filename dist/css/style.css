@@ -45,7 +45,7 @@ body {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
     line-height: 1.6;
-    color: #555;
+    color: #333;
     background: #FFB75E;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFB75E, #ED8F03); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
